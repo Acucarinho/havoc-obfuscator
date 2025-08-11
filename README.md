@@ -15,9 +15,9 @@ This project provides enhancements and fixes for the Havoc C2 framework, includi
    ```
    Change to the Havoc directory:
 
-```bash
-cd Havoc
-  ```
+   ```bash
+   cd Havoc
+   ```
 2. Download the script and the fake page using `wget`:
 
    ```bash
