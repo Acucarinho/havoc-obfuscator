@@ -17,8 +17,8 @@ This project provides enhancements and fixes for the Havoc C2 framework, includi
 2. Download the script and the fake page using `wget`:
 
    ```bash
-   wget https://github.com/Acucarinho/havoc-obfuscator/blob/main/havoc-obfuscator.sh
-   wget https://github.com/Acucarinho/havoc-obfuscator/blob/main/404_iis.html
+   wget https://raw.githubusercontent.com/Acucarinho/havoc-obfuscator/refs/heads/main/havoc-obfuscator.sh
+   wget https://raw.githubusercontent.com/Acucarinho/havoc-obfuscator/refs/heads/main/404_iis.html
    ```
 
 3. Give execution permission to the script:
