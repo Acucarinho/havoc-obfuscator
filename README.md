@@ -13,7 +13,11 @@ This project provides enhancements and fixes for the Havoc C2 framework, includi
    ```bash
    git clone https://github.com/HavocFramework/Havoc.git
    ```
+   Change to the Havoc directory:
 
+```bash
+cd Havoc
+  ```
 2. Download the script and the fake page using `wget`:
 
    ```bash
