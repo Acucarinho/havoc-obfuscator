@@ -40,3 +40,9 @@ This project provides enhancements and fixes for the Havoc C2 framework, includi
 - Use a malleable C2 profile such as the [windows-update profile](https://github.com/Altoid0/Gom-Jabbar/blob/master/Profiles/Havoc/windows-update.yaotl).
 - Avoid using the default port `40056`; choose a different port.
 - Use proxies or redirectors to help evade JARM fingerprinting attacks.
+
+## To-Do List
+
+- [ ] Generate custom certificates to avoid JARM hashes
+- [ ] Fix "Client sent an HTTP request to an HTTPS server" error for HTTP requests
+- [ ] Change commands such as Execute and Shell
