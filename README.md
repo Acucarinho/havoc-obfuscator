@@ -34,6 +34,24 @@ This project provides enhancements and fixes for the Havoc C2 framework, includi
   ```bash
 ./havoc-obfuscator.sh
 ```
+## Compilation
+
+### Compile the Teamserver
+
+Navigate to the `teamserver` directory and build the teamserver executable:
+
+```bash
+cd teamserver
+go build -o havoc-teamserver
+```
+
+### Compile the Client
+
+Navigate to the `client` directory, clean previous builds, create the build directory, and compile the client:
+
+```bash
+cd client && rm -rf Build && mkdir Build && cd Build && cmake .. && make -j2
+```
 
 ## Notes
 
