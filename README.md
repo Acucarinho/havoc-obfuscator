@@ -63,7 +63,7 @@ To start working with Havoc C2 after your modifications, follow these steps from
 Run the teamserver with a specific profile and verbose output:
 
 ```bash
-./teamserver/havoc-teamserver server --profile profiles/windows-update -v
+./teamserver/havoc-teamserver server --profile profiles/windows-update.yaotl -v
 ```
 
 ### 2. Start the Client
