@@ -87,6 +87,12 @@ This software has been tested on:
 - Avoid using the default port `40056`; choose a different port.
 - Use proxies or redirectors to help evade JARM fingerprinting attacks.
 
+## Inspiration
+
+This project was inspired by the techniques and insights presented in:
+
+**How to Hack Like a Ghost: Breaching the Cloud (2021)**
+
 ## To-Do List
 
 - [ ] Generate custom certificates to avoid JARM hashes
