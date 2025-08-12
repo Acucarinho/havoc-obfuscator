@@ -180,6 +180,40 @@ for cmakefile in "$BASE/client/CMakeLists.txt" "$BASE/client/data/CMakeLists.txt
     fi
 done
 
+replace_keywords() {
+    local path="$1"
+    shift
+    local exts=("$@")
+
+    echo "[*] Processando: $path"
+
+    # Backup
+    tar czf "${path}_backup_$(date +%F_%H-%M-%S).tar.gz" "$path"
+
+    # Check for files
+    if ! find "$path" "${exts[@]}" -type f -print0 | grep -q .; then
+        echo "[-] Nenhum arquivo encontrado em $path"
+        return
+    fi
+
+    # Safe replacement: ignore if there is a period before the word
+    find "$path" "${exts[@]}" -type f -print0 \
+    | xargs -0 sed -i -E \
+        -e 's/([^\.])\bExecute\b/\1miniMice/g' \
+        -e 's/([^\.])\bexecute\b/\1miniMice/g' \
+        -e 's/([^\.])\bShell\b/\1miniMice/g' \
+        -e 's/([^\.])\bshell\b/\1miniMice/g'
+}
+
+# Teamserver (.go)
+replace_keywords "teamserver" -name "*.go"
+
+# Client (.go)
+replace_keywords "client" -name "*.go"
+
+# Payloads (.c, .cpp, .h)
+replace_keywords "payloads" \( -name "*.c" -o -name "*.cpp" -o -name "*.h" \)
+
 echo "[✓] Automatic obfuscation completed."
 
 # 8. Patch Teamserver for custom 404 response (IIS 8.5)
