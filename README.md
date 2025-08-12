@@ -91,7 +91,7 @@ This software has been tested on:
 
 This project was inspired by the techniques and insights presented in:
 
-**How to Hack Like a Ghost: Breaching the Cloud (2021)**
+[**How to Hack Like a Ghost: Breaching the Cloud (2021)**](https://www.amazon.com.br/Hack-Like-Ghost-Sparc-Flow/dp/1718501269)
 
 ## To-Do List
 
