@@ -54,6 +54,27 @@ Navigate to the `client` directory, clean previous builds, create the build dire
 cd client && rm -rf Build && mkdir Build && cd Build && cmake .. && make -j2
 ```
 
+## Usage
+
+To start working with Havoc C2 after your modifications, follow these steps from the root directory of the Havoc project:
+
+### 1. Start the Teamserver
+
+Run the teamserver with a specific profile and verbose output:
+
+```bash
+./teamserver/havoc-teamserver server --profile profiles/windows-update -v
+```
+
+### 2. Start the Client
+
+Change to the client directory and launch the client using the new unified command name:
+
+```bash
+cd client
+./MiniMice client
+```
+
 ## Notes
 
 - Use a malleable C2 profile such as the [windows-update profile](https://github.com/Altoid0/Gom-Jabbar/blob/master/Profiles/Havoc/windows-update.yaotl).
