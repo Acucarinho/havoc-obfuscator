@@ -75,6 +75,12 @@ cd client
 ./MiniMice client
 ```
 
+## Tested On
+
+This software has been tested on:
+
+- **Kali Linux 2025.2**
+
 ## Notes
 
 - Use a malleable C2 profile such as the [windows-update profile](https://github.com/Altoid0/Gom-Jabbar/blob/master/Profiles/Havoc/windows-update.yaotl).
