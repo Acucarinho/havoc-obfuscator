@@ -180,6 +180,81 @@ for cmakefile in "$BASE/client/CMakeLists.txt" "$BASE/client/data/CMakeLists.txt
     fi
 done
 
+# Function to replace shell/Shell keywords
+replace_keywords() {
+    local path="$1"
+    shift
+    local exts=("$@")
+
+    echo "[*] Processing: $path"
+
+    # Create backup
+    backup_file="${path}_backup_$(date +%F_%H-%M-%S).tar.gz"
+    tar czf "$backup_file" "$path"
+    echo "[*] Backup created at $backup_file"
+
+    # Find files
+    files_found=()
+    while IFS= read -r -d '' file; do
+        files_found+=("$file")
+    done < <(find "$path" "${exts[@]}" -type f -print0)
+
+    if [ "${#files_found[@]}" -eq 0 ]; then
+        echo "[-] No files found in $path"
+        return
+    fi
+
+    # Replace shell/Shell
+    for f in "${files_found[@]}"; do
+        sed -i -E \
+            -e 's/\bShell\b/MiniMice/g' \
+            -e 's/\bshell\b/miniMice/g' "$f"
+    done
+
+    echo "[*] Replacements done in $path"
+}
+
+# Function to safely replace CLI command names (Use:)
+replace_command_use() {
+    local path="$1"
+    local old_command="$2"
+    local new_command="$3"
+    shift 3
+    local exts=("$@")
+
+    echo "[*] Updating cobra command '$old_command' to '$new_command' in $path"
+
+    files_found=()
+    while IFS= read -r -d '' file; do
+        files_found+=("$file")
+    done < <(find "$path" "${exts[@]}" -type f -print0)
+
+    for f in "${files_found[@]}"; do
+        # Replace only the 'Use:' value
+        sed -i -E "s/Use: *\"$old_command\"/Use: \"$new_command\"/g" "$f"
+    done
+
+    echo "[*] Command '$old_command' updated to '$new_command' in $path"
+}
+
+# === Apply changes ===
+
+# Teamserver (.go)
+replace_keywords "teamserver" -name "*.go"
+replace_command_use "teamserver" "execute" "miniMice" -name "*.go"
+replace_command_use "teamserver" "DotRunner" "miniMiceDot" -name "*.go"
+
+# Client (.cc) in specific folders
+replace_keywords "client/src/Havoc/Demon" -name "*.cc"
+replace_keywords "client/src/MiniMice/Demon" -name "*.cc"
+replace_command_use "client/src/Havoc/Demon" "shell" "miniMice" -name "*.cc"
+replace_command_use "client/src/MiniMice/Demon" "shell" "miniMice" -name "*.cc"
+replace_command_use "client/src/Havoc/Demon" "DotRunner" "miniMiceDot" -name "*.cc"
+replace_command_use "client/src/MiniMice/Demon" "DotRunner" "miniMiceDot" -name "*.cc"
+
+# Payloads (.c, .cpp, .h)
+replace_keywords "payloads" \( -name "*.c" -o -name "*.cpp" -o -name "*.h" \)
+
 echo "[✓] Automatic obfuscation completed."
 
 # 8. Patch Teamserver for custom 404 response (IIS 8.5)
