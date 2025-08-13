@@ -6,6 +6,7 @@ This project provides enhancements and fixes for the Havoc C2 framework, includi
 - IIS 8.5 impersonation to better mimic a legitimate Microsoft IIS server, including removing the `X-Havoc: True` header to avoid detection.
 - A fix in `./teamserver/cmd/server/teamserver.go` addressing an issue where Havoc sends a request to `/`, receives a 301 redirect to `/home/`, but `/home/` returns a 404 with length 0.
 - The included script fixes this problem by serving a fake page instead of a 404 error.
+- Refactors the Havoc C2 codebase by renaming all occurrences of the commands `Shell` (uppercase and lowercase variants) to `MiniMice`/`miniMice`, and the CLI command `DotRunner` to `miniMiceDot`, ensuring a consistent and unified command naming scheme across the teamserver, client, and payloads.
 
 ## Installation
 
@@ -96,4 +97,4 @@ This project was inspired by the techniques and insights presented in:
 
 - [ ] Generate custom certificates to avoid JARM hashes
 - [ ] Fix "Client sent an HTTP request to an HTTPS server" error for HTTP requests
-- [ ] Change commands such as Execute and Shell
+- [x] Change commands such as Execute and Shell
